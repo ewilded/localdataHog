@@ -43,6 +43,6 @@
     "Cmdline Password or source code variable assignment" : "[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D][0-9A-Za-z_]{,10}\\s*=\\s*\\S{3,40}",
     "Cmdline Token" : "[t|T][o|O][k|K][e|E][n|N][0-9A-Za-z_]{,10}\\s+\\S{5,64}",
     "Cmdline Token or source code variable assignment" : "[t|T][o|O][k|K][e|E][n|N][0-9A-Za-z_]{,10}\\s*=\\s*\\S{5,64}",
-    "Cmdline Secret" : "[s|S][e|E][c|C][r|R][e|T][t|T][0-9A-Za-z_]{,10}\\s+\\S{3,64}",
-    "Cmdline Secret or source code variable assignment" : "[s|S][e|E][c|C][r|R][e|T][t|T][0-9A-Za-z_]{,10}\\s*=\\s*\\S{3,64}"
+    "Cmdline Secret" : "[s|S][e|E][c|C][r|R][e|E][t|T][0-9A-Za-z_]{,10}\\s+\\S{3,64}",
+    "Cmdline Secret or source code variable assignment" : "[s|S][e|E][c|C][r|R][e|E][t|T][0-9A-Za-z_]{,10}\\s*=\\s*\\S{3,64}"
 }
