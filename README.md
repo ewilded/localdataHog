@@ -31,4 +31,5 @@ For cleaner results, you might consider splitting the work into phases, whereas 
 
 Also, you can skip results (common false positives) by defining regexes in `filter_regexes.json`.
 
-
+## Demo:
+![Test](test.png?raw=true)
