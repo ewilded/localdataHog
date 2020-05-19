@@ -1,0 +1,6 @@
+{
+    "ABCD alphabet constant" : "[0-9A-Za-z_]{,10}[a|A][b|B][c|C][d|D][e|E][f|F][g|G][h|H][i|I][j|J].*",
+    "Java class object" : ".*\\S{0,2}[com|org]/([0-9a-zA-Z]+/){2,}[0-9a-zA-Z]+",
+    "Java class object2" : "Ljava/([0-9a-zA-Z]+/)+[0-9a-zA-Z]+",
+    "R||||| binary garbage" : "R\\|\\|\\|\\|\\|\\|.*"
+}
