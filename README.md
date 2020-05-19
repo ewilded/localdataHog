@@ -7,7 +7,7 @@ This code is entirely based on https://github.com/dxa4481/truffleHog.
 
 The main difference is that whereas truffleHog was built with git repositories in mind, this tool is an attempt of applying truffleHog approach (potential secret searching leveraging both regular expressions and entropy calculation) against any data (although for it to be effective, data should not be encoded nor compressed).
 
-The tool simply iterates over all files from the given path, runs strings on each one and then runs regex and entropy checks against each string. Then reports caught strings per file.
+The tool simply iterates over all files from the given path (`find path`), runs `strings` on each one and then runs regex and entropy checks against each string. Then reports caught strings per file.
 
 # Usage:
 Simply run
