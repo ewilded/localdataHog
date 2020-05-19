@@ -17,14 +17,18 @@ Simply run
 in order to get the results printed both to the standard output and saved into a log file hog.log.
 
 
-Two modes of secret search are supported (both are enabled by default)
-`--regex` 	Checks each of the strings against a set of regular expressions. By default it takes ones defined in regexes.json, which can be used as a template for customisation. Use --rules in order to provide an alternative JSON file with own regular expressions. In orde to disable this mode, use --noregex.
-`--entropy`	Reports strings with high entropy. Use --noentropy to disable this mode.
+Two modes of secret search are supported (both are enabled by default):
+
+`--regex` 	Checks each of the strings against a set of regular expressions. By default it takes ones defined in regexes.json, which can be used as a template for customisation. Use `--rules` in order to provide an alternative JSON file with own regular expressions. In order to disable this mode, use `--noregex`.
+
+`--entropy`	Reports strings with high entropy. Use `--noentropy` to disable this mode.
 	
 For cleaner results, you might consider splitting the work into phases, whereas you run regex check and entropy check separately:
+
 `python3 --noentropy localdataHog.py /target/directory | tee regexhog.log`
+
 `python3 --noregex localdataHog.py /target/directory | tee entropyhog.log`
 
-Also, you can skip results (common false positives) by defining regexes in filter_regexes.json.
+Also, you can skip results (common false positives) by defining regexes in `filter_regexes.json`.
 
 
