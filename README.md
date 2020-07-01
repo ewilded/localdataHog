@@ -25,9 +25,9 @@ Two modes of secret search are supported (both are enabled by default):
 	
 For cleaner results, you might consider splitting the work into phases, whereas you run regex check and entropy check separately:
 
-`python3 --noentropy localdataHog.py /target/directory | tee regexhog.log`
+`python3 localdataHog.py --noentropy /target/directory | tee regexhog.log`
 
-`python3 --noregex localdataHog.py /target/directory | tee entropyhog.log`
+`python3 localdataHog.py --noregex /target/directory | tee entropyhog.log`
 
 Also, you can skip results (common false positives) by defining regexes in `filter_regexes.json`.
 
