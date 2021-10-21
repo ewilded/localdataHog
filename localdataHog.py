@@ -10,6 +10,7 @@ import argparse
 import uuid
 import hashlib
 import os
+import platform
 import re
 import json
 import stat
@@ -185,12 +186,29 @@ def find_strings(path, do_regex=True, do_entropy=True, custom_regexes={},path_in
     # 2. iterate the results and skip the files that should not be included as per include/exclude args
     # 3. obtain strings output
     # 4. process the strings (regex_check + find_entropy) output for each invdividual file, if stuff is found, print it right away to stdout AND the log file
-    find_result = subprocess.run(['find',path], stdout=subprocess.PIPE)
+    while path.endswith('/') or path.endswith('\\'):
+            path = path[:-1] # remove any trailing slashes, cmd.exe /c dir /s /b doesn't like them
+    if path == '' and platform.system() == 'Linux':
+        path = '/'
+    windows_dir = ['cmd', '/c', 'dir', '/s', '/b', path]
+    windows_findstr = ['findstr', '/R', '.']
+    linux_find = ['find', path]
+    linux_strings = ['strings']
+    strings_command = ''
+    find_command = ''
+    if platform.system() == 'Windows':
+        strings_command = windows_findstr
+        find_command = windows_dir
+    else:
+        strings_command = linux_strings
+        find_command = linux_find
+    find_result = subprocess.run(find_command, stdout=subprocess.PIPE)
     for file in find_result.stdout.decode('utf-8').strip().split("\n"):
-        if not path_included(file, path_inclusions, path_exclusions) or os.path.isdir(file):
+        file = file.strip()
+        if file == '' or not path_included(file, path_inclusions, path_exclusions) or os.path.isdir(file):
             continue
-        #print("Testing "+file)
-        strings_result = subprocess.run(['strings',file], stdout=subprocess.PIPE)   # add support for windows widechar strings here (if file is of PE executable type, run "strings -e l file" instead or of "strings file" or in addition - running ASCII strings on execs by default produces lots of high entropy strings that are not passwords)
+        full_strings_command = strings_command + [file]
+        strings_result = subprocess.run(full_strings_command, stdout=subprocess.PIPE)   # add support for windows widechar strings here (if file is of PE executable type, run "strings -e l file" instead or of "strings file" or in addition - running ASCII strings on execs by default produces lots of high entropy strings that are not passwords)
         strings_output = strings_result.stdout.decode('utf-8').strip()
         if do_regex:
             regex_check(strings_output, file)
